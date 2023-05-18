@@ -2,5 +2,4 @@ require "sinatra"
 require "sinatra/activerecord"
 
 
-set :database, "sqlite3:myblogdb.sqlite3"
-
+# set :database, {adapter: "sqlite3", database: "myblogdb.sqlite3"}
