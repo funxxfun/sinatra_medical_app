@@ -11,3 +11,20 @@
     <td>ふみ</td>
   </tr>
 </table>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <a href="post/<%= post.id %>"><%= post.title %></a> <%= post.created_at %>
+    </li>
+  <% end %>
+</ul>
+
+ <h2>新規投稿</h2>
+ <form method="post" action="/post">
+    <label for="title">タイトル：</label>
+    <input type="text" name="title">
+    <label for="body">投稿内容：</label>
+    <input type="text" name="body">
+    <input type="submit" value="新規投稿" >
+ </form>
+ 
