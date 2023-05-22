@@ -14,3 +14,8 @@ post '/post' do
   @post = Post.create(title: params[:title], body: params[:body])
   redirect '/'
 end
+
+get '/post/:id' do
+  @post = Post.find(params[:id])
+  erb :post_page
+end
