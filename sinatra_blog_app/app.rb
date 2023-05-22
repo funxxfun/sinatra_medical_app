@@ -9,3 +9,8 @@ get '/' do
   @posts = Post.all
   erb :index
 end
+
+post '/post' do
+  @post = Post.create(title: params[:title], body: params[:body])
+  redirect '/'
+end
