@@ -26,3 +26,9 @@ put '/post/:id' do
   @post.save
   redirect '/post/'+params[:id]
 end
+
+delete '/post/:id' do
+  @post = Post.find(params[:id])
+  @post.destroy
+  redirect '/'
+end
