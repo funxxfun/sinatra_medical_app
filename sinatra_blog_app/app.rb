@@ -20,7 +20,7 @@ get '/post/:id' do
   erb :post_page
 end
 
-put '/post/:id' do
+patch '/post/:id' do
   @post = Post.find(params[:id])
   @post.update(title: params[:title], body: params[:body])
   @post.save

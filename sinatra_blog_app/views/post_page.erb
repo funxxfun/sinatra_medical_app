@@ -9,7 +9,7 @@
 
 <h2>投稿編集</h2>
 <form method="post" action="/post/<%= @post.id %>">
-  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="_method" value="patch">
   <input type="text" name="title" value="<%= @post.title %>">
   <input type="text" name="body" value="<%= @post.body %>">
   <button type="submit">更新</button>
