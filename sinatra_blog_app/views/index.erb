@@ -2,7 +2,7 @@
 <ul>
   <% @posts.each do |post| %>
     <li>
-      <a href="post/<%= post.id %>"><%= post.title %></a> | <%= post.created_at %> | <%= post.updated_at %>
+      <a href="post/<%= post.id %>"><%= post.title %></a> | <%= post.created_at.strftime('%a %d %b %Y') %> | <%= post.updated_at.strftime('%a %d %b %Y')  %>
     </li>
   <% end %>
 </ul>
