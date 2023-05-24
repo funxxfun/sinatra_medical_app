@@ -1,7 +1,11 @@
 <h2><%= @post.title %></h2>
 <p>作成日: <%= @post.created_at %></p>
 <p><%= @post.body %></p>
-<a href="/post/<%= @post.id %>" name="_method" value="delete">削除</a>
+<form method="post" action="/post/<%= @post.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">削除</button>
+</form>
+
 
 <h2>投稿編集</h2>
 <form method="post" action="/post/<%= @post.id %>">
