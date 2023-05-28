@@ -1,0 +1,5 @@
+<%= "ユーザー一覧です" %>
+
+<% @users.each do |user| %>
+  <%= user.id %>：<%= user.name %>
+<% end %>

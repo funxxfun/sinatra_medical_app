@@ -32,3 +32,8 @@ delete '/post/:id' do
   @post.destroy
   redirect '/'
 end
+
+get '/user' do
+  @users = User.all
+  erb :user
+end
