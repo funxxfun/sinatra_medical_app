@@ -1,0 +1,18 @@
+<h2>タイトル：<%= @post.title %></h2>
+<p>作成日: <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+<p>投稿内容：<%= @post.body %></p>
+<form method="post" action="/post/<%= @post.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">削除する</button>
+</form>
+
+
+<h2>投稿編集</h2>
+<form method="post" action="/post/<%= @post.id %>">
+  <input type="hidden" name="_method" value="patch">
+  <label for="title">タイトル：</label>
+  <input type="text" name="title" value="<%= @post.title %>">
+  <label for="body">投稿内容：</label>
+  <input type="text" name="body" value="<%= @post.body %>">
+  <button type="submit">変更する</button>
+</form>
