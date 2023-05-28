@@ -37,3 +37,8 @@ get '/user' do
   @users = User.all
   erb :user
 end
+
+post '/user' do
+  @user = User.create(name: params[:name])
+  redirect '/user'
+end
