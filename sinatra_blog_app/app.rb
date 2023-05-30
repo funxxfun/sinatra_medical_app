@@ -38,7 +38,19 @@ get '/user' do
   erb :user
 end
 
-post '/user' do
-  @user = User.create(name: params[:name])
-  redirect '/user'
+# post '/user' do
+#   @user = User.create(name: params[:name])
+#   redirect '/user'
+# end
+
+get '/signup' do
+  erb :signup
+end
+
+post '/signup' do
+  User.create(
+    name: params[:name],
+    password: params[:password]
+  )
+  redirect '/'
 end
