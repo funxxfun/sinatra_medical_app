@@ -1,8 +1,9 @@
 drop table if exists users;
 create table users (
   id integer primary key,
-  name text
+  name integer,
+  password integer
 );
 
-insert into users (name) values ('name1');
-insert into users (name) values ('name2');
+insert into users (name, password) values ('name1', 'password1');
+insert into users (name, password) values ('name2', 'password2');
