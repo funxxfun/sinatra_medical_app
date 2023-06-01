@@ -52,5 +52,12 @@ post '/signup' do
     name: params[:name],
     password: params[:password]
   )
-  redirect '/'
+  redirect '/user'
 end
+
+get '/login' do
+  erb :login
+end
+
+# post '/login' do
+# end
