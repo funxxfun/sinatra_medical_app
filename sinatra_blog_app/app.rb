@@ -2,6 +2,9 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/reloader'
 require './models.rb'
+# require 'digest/sha1'
+# require 'digest/sha2'
+# require 'digest/md5'
 
 set :database, {adapter: 'sqlite3', database: 'myblogdb.sqlite3'}
 
@@ -33,6 +36,24 @@ delete '/post/:id' do
   redirect '/'
 end
 
+
+get '/signup' do
+  erb :signup
+end
+
+post '/signup' do
+  @user = User.create(
+    name: params[:name],
+    password: params[:password]
+  )
+  if @user.save
+    redirect '/user'
+  else
+    erb :signup
+  end
+end
+
+
 get '/user' do
   @users = User.all
   erb :user
@@ -43,21 +64,12 @@ end
 #   redirect '/user'
 # end
 
-get '/signup' do
-  erb :signup
-end
 
-post '/signup' do
-  User.create(
-    name: params[:name],
-    password: params[:password]
-  )
-  redirect '/user'
-end
 
 get '/login' do
   erb :login
 end
 
-# post '/login' do
-# end
+post '/login' do
+  
+end

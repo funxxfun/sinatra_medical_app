@@ -1,8 +1,19 @@
 <%= "ユーザー一覧です" %>
-<% @users.each do |user| %>
-  <ul>
-    <li>
-      <%= user.id %>：<%= user.name %>
-    </li>
-  </ul>
-<% end %>
+  <table>
+    <td>
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>パスワード</th>
+      </tr>
+    </td>
+    <% @users.each do |user| %>
+      <tr>
+        <th><%= user.id %></th>
+        <th><%= user.name %></th>
+        <th><%= user.password %></th>
+      </tr>
+    <% end %>
+  </table>
+
+
