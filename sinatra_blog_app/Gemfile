@@ -2,8 +2,8 @@
 
 source "https://rubygems.org"
 
-gem 'sqlite3' #DBにSQLiteを使う
-gem "sinatra-activerecord" #ActiveRecordを使用する
+gem 'sqlite3' #ActiveRecordからSQLiteを使用するために必要
+gem "sinatra-activerecord" #Rubyからデータベースを使用するために必要
 gem "rake" #効率的で簡単なタスクの実行を可能にする
 
 # gem "rails"
