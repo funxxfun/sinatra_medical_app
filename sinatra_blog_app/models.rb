@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   validates_presence_of :title
+  belongs_to :user
 end
 
 class User < ActiveRecord::Base
