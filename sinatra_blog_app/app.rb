@@ -23,7 +23,7 @@ end
 
 get '/post/:id' do
   @post = Post.find(params[:id])
-  erb :post_page
+  erb :post
 end
 
 patch '/post/:id' do
