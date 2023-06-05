@@ -3,7 +3,8 @@
   <tr class="row">
     <th class="col">タイトル</th>
     <th class="col">投稿内容</th>
-    <th class="col">投稿者id：投稿者</th>
+    <th class="col">投稿者id</th>
+    <th class="col">投稿者</th>
     <th class="col">投稿日時</th>
     <th class="col">更新日時</th>
   </tr>
@@ -11,7 +12,8 @@
     <tr class="row">
       <td class="col"><a href="post/<%= post.id %>"><%= post.title %></a></td>
       <td class="col"><%= post.body %></td>
-      <td class="col"><%= post.user_id %>：<%= @user.name %></td>
+      <td class="col"><%= post.user_id %></td>
+      <td class="col"><%= @user.name %></td>
       <td class="col"><%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
       <td class="col"><%= post.updated_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
    </tr>
