@@ -10,6 +10,9 @@ set :database, {adapter: 'sqlite3', database: 'myblogdb.sqlite3'}
 
 get '/' do
   @posts = Post.all
+  # 投稿したユーザーの名前を表示する記述（仮）
+  @post = Post.find(1)
+  @user = User.find(@post.user_id)
   erb :index
 end
 
