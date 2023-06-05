@@ -1,0 +1,24 @@
+body {
+  font-family: Verdana, sans-serif;
+}
+
+.container {
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+nav {
+  background-color: #888;
+  list-style: none;
+  padding: 10px;
+  text-align: right;
+}
+
+ul {
+  /* display: flex; */
+}
+
+li {
+  display: inline-block;
+}
