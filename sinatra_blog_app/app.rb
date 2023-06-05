@@ -14,7 +14,10 @@ get '/' do
 end
 
 post '/post' do
-  @post = Post.create(title: params[:title], body: params[:body])
+  @post = Post.create(
+    title: params[:title],
+    body: params[:body]
+  )
   redirect '/'
 end
 
@@ -25,7 +28,10 @@ end
 
 patch '/post/:id' do
   @post = Post.find(params[:id])
-  @post.update(title: params[:title], body: params[:body])
+  @post.update(
+    title: params[:title],
+    body: params[:body]
+  )
   @post.save
   redirect '/post/'+params[:id]
 end
