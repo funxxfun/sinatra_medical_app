@@ -10,6 +10,10 @@ set :database, {adapter: 'sqlite3', database: 'myblogdb.sqlite3'}
 
 get '/' do
   @posts = Post.all
+  # 投稿したユーザーの名前を表示する記述
+  # postのidを取る記述を書き換える
+  @post = Post.find(1)
+  @user = User.find(@post.user_id)
   erb :index
 end
 
@@ -23,7 +27,8 @@ end
 
 get '/post/:id' do
   @post = Post.find(params[:id])
-  erb :post_page
+  @user = User.find(@post.user_id)
+  erb :post
 end
 
 patch '/post/:id' do
