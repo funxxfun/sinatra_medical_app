@@ -58,8 +58,10 @@ post '/signup' do
     name: params[:name],
     password: params[:password]
   )
+  # client.exec_params('insert into users(name, password) values($1, $2)', [name, password])
+  # usersテーブルに上で定義した変数(name,email,pass)の中身を入れる。
   if @user.save
-    redirect '/user'
+    redirect '/'
   else
     erb :signup
   end
@@ -69,12 +71,22 @@ end
 get '/user' do
   @users = User.all
   erb :user
+  # @resにparamsで受け取ったname、email、passを元にusersテーブルからとってきて代入する。
+  # @res = client.exec_params('select * from users where name = $1 and password = $2', [name, password]).first
+  
+  #@res['id'].to_iは@res['id']と取得されるデータが文字列なので整数に変換してsession[:user_id]に代入している。これでsessionに現在ログインしているuseが保持される。
+  # session[:user_id] = @res['id'].to_i
 end
 
 # post '/user' do
 #   @user = User.create(name: params[:name])
 #   redirect '/user'
 # end
+
+get '/user/:id' do
+  @user = User.find(params[:id])
+  erb :user_show
+end
 
 
 
@@ -83,5 +95,11 @@ get '/login' do
 end
 
 post '/login' do
-  
+  name = params[:name]
+  if password = params[:password]
+    session['name, password'] = params['name, password']
+    redirect '/'
+  else
+    erb :user
+  end
 end

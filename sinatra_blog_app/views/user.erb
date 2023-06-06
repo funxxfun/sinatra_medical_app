@@ -4,14 +4,12 @@
       <tr>
         <th>ID</th>
         <th>名前</th>
-        <th>パスワード</th>
       </tr>
     </td>
     <% @users.each do |user| %>
       <tr>
         <th><%= user.id %></th>
-        <th><%= user.name %></th>
-        <th><%= user.password %></th>
+        <th><a href="/user/<%= user.id %>"><%= user.name %></a></th>
       </tr>
     <% end %>
   </table>
