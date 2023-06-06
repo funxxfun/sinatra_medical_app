@@ -1,5 +1,6 @@
 body {
-  font-family: Verdana, sans-serif;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .container {
@@ -9,7 +10,7 @@ body {
 }
 
 nav {
-  background-color: #888;
+  background-color: #f8f8f8;
   list-style: none;
   padding: 10px;
   text-align: right;
