@@ -2,9 +2,6 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/reloader'
 require './models.rb'
-# require 'digest/sha1'
-# require 'digest/sha2'
-# require 'digest/md5'
 
 enable :sessions
 
@@ -20,12 +17,16 @@ get '/' do
 end
 
 post '/post' do
-  @post = Post.create(
-    title: params[:title],
-    body: params[:body],
-    user_id: session[:user_id]
-  )
-  redirect '/'
+  if session[:user_id]
+    @post = Post.create(
+      title: params[:title],
+      body: params[:body],
+      user_id: session[:user_id]
+    )
+    redirect '/'
+  else
+    erb :login
+  end
 end
 
 get '/post/:id' do
@@ -61,7 +62,7 @@ post '/signup' do
     password: params[:password]
   )
   if @user.save
-    session[:user_id] = @user.id.to_i
+    session[:user_id] = @user.id
     redirect "/user/#{@user.id}"
   else
     erb :signup
@@ -72,7 +73,7 @@ get '/login' do
   erb :login
 end
 
-post '/auth' do
+post '/login' do
   @user = User.find_by(
     name: params[:name],
     password: params[:password]
@@ -80,9 +81,10 @@ post '/auth' do
   if @user.nil?
     redirect '/login'
   end
-  session[:user_id] = @user.id.to_i
+  session[:user_id] = @user.id
   redirect "/"
 end
+
 
 get '/user' do
   @users = User.all
