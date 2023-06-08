@@ -11,7 +11,7 @@
 		<nav class="navbar">
 			<ul>
 				<% if session[:user_id] %>
-					<p>ようこそ、<%= @user.name %>さん</p>
+					<p>ようこそ、<%#= @user.name %>さん</p>
 					<a href=<%= "/user/#{session[:user_id]}" %>>マイページ</a>
 				<% else %>
 					<a class="btn btn-info" href=<%= '/login' %>>ログイン</a>

@@ -6,6 +6,8 @@ require './models.rb'
 # require 'digest/sha2'
 # require 'digest/md5'
 
+enable :sessions
+
 set :database, {adapter: 'sqlite3', database: 'myblogdb.sqlite3'}
 
 get '/' do
@@ -20,7 +22,8 @@ end
 post '/post' do
   @post = Post.create(
     title: params[:title],
-    body: params[:body]
+    body: params[:body],
+    user_id: session[:user_id]
   )
   redirect '/'
 end
@@ -38,7 +41,7 @@ patch '/post/:id' do
     body: params[:body]
   )
   @post.save
-  redirect '/post/'+params[:id]
+  redirect "/post/#{@post.id}"
 end
 
 delete '/post/:id' do
@@ -48,23 +51,38 @@ delete '/post/:id' do
 end
 
 
-# get '/signup' do
-#   @user = User.new
-#   erb :signup
-# end
+get '/signup' do
+  erb :signup
+end
 
-# post '/signup' do
-#   @user = User.create(
-#     name: params[:name],
-#     password: params[:password]
-#   )
-#   if @user.save
-#     redirect '/'
-#   else
-#     erb :signup
-#   end
-# end
+post '/signup' do
+  @user = User.create(
+    name: params[:name],
+    password: params[:password]
+  )
+  if @user.save
+    session[:user_id] = @user.id.to_i
+    redirect "/user/#{@user.id}"
+  else
+    erb :signup
+  end
+end
 
+get '/login' do
+  erb :login
+end
+
+post '/auth' do
+  @user = User.find_by(
+    name: params[:name],
+    password: params[:password]
+  )
+  if @user.nil?
+    redirect '/login'
+  end
+  session[:user_id] = @user.id.to_i
+  redirect "/"
+end
 
 get '/user' do
   @users = User.all
@@ -73,37 +91,16 @@ end
 
 get '/user/:id' do
   @user = User.find(params[:id])
-  erb :user_show
-end
-
-get '/user_new' do
-  @user = User.new
-  erb :user_new
-end
-
-post '/user_new' do
-  @user = User.create(
-    name: params[:name],
-    password: params[:password]
-  )
-  if @user.save
-    redirect '/user'
+  if @user && @user.authenticate(session[:user_id])
+    erb :user_show
   else
-    erb :user_new
+    redirect '/login'
   end
 end
 
-
-# get '/login' do
-#   erb :login
+# get '/user_new' do
+#   @user = User.new
+#   erb :user_new
 # end
 
-# post '/login' do
-#   name = params[:name]
-#   if password = params[:password]
-#     session['name, password'] = params['name, password']
-#     redirect '/'
-#   else
-#     erb :user
-#   end
-# end
+
