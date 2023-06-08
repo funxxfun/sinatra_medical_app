@@ -91,11 +91,11 @@ end
 
 get '/user/:id' do
   @user = User.find(params[:id])
-  if @user && @user.authenticate(session[:user_id])
+  # if @user && @user.authenticate(session[:user_id])
     erb :user_show
-  else
-    redirect '/login'
-  end
+  # else
+    # redirect '/login'
+  # end
 end
 
 # get '/user_new' do

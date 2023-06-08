@@ -11,5 +11,5 @@ class User < ActiveRecord::Base
   # def authenticate(user_id)
   #   return self.id == user_id ? true : false
   # end
-
+  
 end
