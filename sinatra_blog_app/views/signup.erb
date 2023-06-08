@@ -1,16 +1,17 @@
-<% if @user.errors.present? %>
-  エラーがあります
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%# if @user.errors.present? %>
+  <%# エラーがあります %>
+  <%# <ul> %>
+    <%# @user.errors.full_messages.each do |message| %>
+      <%# <li>= message</li> %>
+    <%# end %>
+  <%# </ul> %>
+<%# end %>
+
 <h1>アカウント新規登録</h1>
 <form action="/signup" method="post">
   <label for="name">ユーザー名</label>
-  <input type="text" name="name" id="name" value="<%= @user.name %>">
+  <input type="text" name="name" id="name">
   <label for="password">パスワード</label>
-  <input type="text" name="password" id="password" value="<%= @user.password %>">
+  <input type="text" name="password" id="password">
   <button type="submit">登録する</button>
 </form>

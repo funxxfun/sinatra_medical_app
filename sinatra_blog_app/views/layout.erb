@@ -9,12 +9,18 @@
 <body>
 	<div class="container">
 		<nav class="navbar">
-			<%# if ログインしていたらユーザー名を表示する %>
-			<%#= @user.name %>
 			<ul>
-				<li><a class="btn btn-primary" href="/login">Home</a></li>
-				<li><a class="btn btn-warning" href="/user">ユーザー一覧</a></li>
-				<li><a class="btn btn-info" href="/">投稿一覧</a></li>
+				<% if session[:user_id] %>
+					<p>ようこそ、<%= @user.name %>さん</p>
+					<a href=<%= "/user/#{session[:user_id]}" %>>マイページ</a>
+				<% else %>
+					<a class="btn btn-info" href=<%= '/login' %>>ログイン</a>
+					<a class="btn btn-warning" href=<%= '/signup' %>>新規登録</a>
+				<% end %>
+
+				<li><a class="btn btn-danger" href="/login">Home</a></li>
+				<li><a class="btn btn-success" href="/user">ユーザー一覧</a></li>
+				<li><a class="btn btn-primary" href="/">投稿</a></li>
 			</ul>
 		</nav>
 		<%= yield %>

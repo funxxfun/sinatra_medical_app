@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :password, :maxmum => 10, :minimum => 4
   has_many :posts
+
+  # def authenticate(user_id)
+  #   return self.id == user_id ? true : false
+  # end
+
 end
