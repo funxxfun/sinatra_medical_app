@@ -18,11 +18,12 @@ end
 
 post '/post' do
   if session[:user_id]
-    @post = Post.create(
+    @post = Post.new(
       title: params[:title],
       body: params[:body],
       user_id: session[:user_id]
     )
+    @post.save
     redirect '/'
   else
     erb :login
@@ -57,7 +58,7 @@ get '/signup' do
 end
 
 post '/signup' do
-  @user = User.create(
+  @user = User.new(
     name: params[:name],
     password: params[:password]
   )
