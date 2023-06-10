@@ -86,6 +86,11 @@ post '/login' do
   redirect "/"
 end
 
+post '/logout' do
+  session.clear
+  redirect '/'
+end
+
 
 get '/user' do
   @users = User.all
@@ -96,7 +101,7 @@ get '/user/:id' do
   @user = User.find(params[:id])
   # if @user && @user.authenticate(session[:user_id])
     erb :user_show
-  # else
+  # elseú
     # redirect '/login'
   # end
 end
@@ -105,5 +110,4 @@ end
 #   @user = User.new
 #   erb :user_new
 # end
-
 
