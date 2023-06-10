@@ -5,7 +5,7 @@ require './models.rb'
 
 enable :sessions
 
-set :database, {adapter: 'sqlite3', database: 'medical-management-app.sqlite3'}
+set :database, {adapter: 'sqlite3', database: 'myblogdb.sqlite3'}
 
 get '/' do
   @posts = Post.all
