@@ -14,6 +14,11 @@
 				<% if session[:user_id] %>
 					<p>ようこそ、<%#= @user.name %>さん</p>
 					<li><a class="btn btn-warning" href=<%= "/user/#{session[:user_id]}" %>>マイページ</a></li>
+					<li>
+						<form method="post" action="/logout">
+							<button class="btn btn-info"> ログアウト</button>
+						</form>
+					</li>
 				<% else %>
 					<li><a class="btn btn-warning" href=<%= '/signup' %>>新規登録</a></li>
 					<li><a class="btn btn-info" href=<%= '/login' %>>ログイン</a></li>
