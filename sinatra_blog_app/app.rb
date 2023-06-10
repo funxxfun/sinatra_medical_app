@@ -11,8 +11,8 @@ get '/' do
   @posts = Post.all
   # 投稿したユーザーの名前を表示する記述
   # postのidを取る記述を書き換える
-  @post = Post.find(1)
-  @user = User.find(@post.user_id)
+  # @post = Post.find(1)
+  # @user = User.find(@post.user_id)
   erb :index
 end
 
